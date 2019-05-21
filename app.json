@@ -1,15 +1,35 @@
 {
-   "expo": {
-    "name": "Michael Ferikson",
-    "icon": "",
+  "expo": {
+    "name": "MDMapp",
+    "slug": "MDMapp",
+    "privacy": "public",
+    "sdkVersion": "32.0.0",
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
-    "slug": "your-app-slug",
-    "sdkVersion": "28.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/Logo_BRI_Sq.png",
+    "splash": {
+      "image": "./assets/images/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
     "ios": {
       "bundleIdentifier": "com.Accenture.MichaelFerikson"
     },
     "android": {
       "package": "com.Accenture.MichaelFerikson"
     }
-   }
- }
+  }
+}

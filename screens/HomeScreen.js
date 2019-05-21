@@ -1,107 +1,161 @@
-import React from 'react';
-import {
-  Image,
-  Platform,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
 import { WebBrowser } from 'expo';
-
+import React from 'react';
+import { Image, Platform, ScrollView, StyleSheet, Text, TouchableOpacity, TextInput, View, Button } from 'react-native';
 import { MonoText } from '../components/StyledText';
+
+
+'use strict';
 
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
   };
-
+state = {
+    nama: '',
+    nik: '',
+    dob:'',
+    cif:'',
+    norek: ''
+ }
+ handleNama = (text) => {
+    this.setState({ nama: Text })
+ }
+ handleNIK = (text) => {
+    this.setState({ nik: Number })
+ }
+ handleDOB = (text) => {
+   this.setDOB({ dob: Date})
+ }
+ handleCIF = (text) => {
+   this.setCIF({ cif: Text})
+ }
+ handleNoRek = (text) => {
+    this.setNoRek({ norek:Number})
+ }
+ login = (email, pass) => {
+    alert('email: ' + email + ' password: ' + pass)
+ }
   render() {
     return (
+
       <View style={styles.container}>
         <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
+
           <View style={styles.welcomeContainer}>
             <Image
               source={
                 __DEV__
-                  ? require('../assets/images/robot-dev.png')
+                  ? require('../assets/images/brilogo.png')
                   : require('../assets/images/robot-prod.png')
               }
               style={styles.welcomeImage}
             />
-          </View>
+            <Text style={styles.bigTitle}>BRI Master Data Management</Text>
 
-          <View style={styles.getStartedContainer}>
-            {this._maybeRenderDevelopmentModeWarning()}
+            <Text style={styles.smallTitle}>CIF Deduplication Search </Text>
+          </View>        
 
-            <Text style={styles.getStartedText}>Get started by opening</Text>
-
-            <View style={[styles.codeHighlightContainer, styles.homeScreenFilename]}>
-              <MonoText style={styles.codeHighlightText}>screens/HomeScreen.js</MonoText>
-            </View>
-
-            <Text style={styles.getStartedText}>
-              Change this text and your app will automatically reload.
-            </Text>
-          </View>
-
-          <View style={styles.helpContainer}>
-            <TouchableOpacity onPress={this._handleHelpPress} style={styles.helpLink}>
-              <Text style={styles.helpLinkText}>Help, it didn’t automatically reload!</Text>
-            </TouchableOpacity>
-          </View>
+          <ScrollView style={styles.containerColumn} contentContainerStyle={styles.searchtext}>
+              <View style={styles.searchtext}>
+                <Text>NIK:</Text>
+                <TextInput style = {styles.input}
+                  underlineColorAndroid = "transparent"
+                  placeholder = " "
+                  placeholderTextColor = "#000000"
+                  autoCapitalize = "none"
+                  onChangeText = {this.handleNIK}/>
+              </View>
+              <View style={styles.searchtext}>
+                <Text>Nama Customer:</Text>
+                <TextInput style = {styles.input}
+                  underlineColorAndroid = "transparent"
+                  placeholder = " "
+                  placeholderTextColor = "#000000"
+                  autoCapitalize = "none"
+                  onChangeText = {this.handleNama}/>
+              </View>
+              <View style={styles.searchtext}>
+                <Text>Date of Birth:</Text>
+                <TextInput style = {styles.input}
+                  underlineColorAndroid = "transparent"
+                  placeholder = " "
+                  placeholderTextColor = "#000000"
+                  autoCapitalize = "none"
+                  onChangeText = {this.handleDOB}/>
+              </View>
+              <View style={styles.searchtext}>
+                <Text>CIF:</Text>
+                <TextInput style = {styles.input}
+                  underlineColorAndroid = "transparent"
+                  placeholder = " "
+                  placeholderTextColor = "#000000"
+                  autoCapitalize = "none"
+                  onChangeText = {this.handleCIF}/>
+              </View>
+              <View style={styles.searchtext}>
+                <Text>No. Rekening:</Text>
+                <TextInput style = {styles.input}
+                  underlineColorAndroid = "transparent"
+                  placeholder = " "
+                  placeholderTextColor = "#000000"
+                  autoCapitalize = "none"
+                  onChangeText = {this.handleNoRek}/>
+              </View>
+              <View style={styles.searchBttn}>
+                <Button onPress={() => {
+                    Alert.alert('You tapped the button!');
+                  }}
+                  title="Search"
+                />
+              </View>
+            </ScrollView>
+            
         </ScrollView>
 
-        <View style={styles.tabBarInfoContainer}>
-          <Text style={styles.tabBarInfoText}>This is a tab bar. You can edit it in:</Text>
-
-          <View style={[styles.codeHighlightContainer, styles.navigationFilename]}>
-            <MonoText style={styles.codeHighlightText}>navigation/MainTabNavigator.js</MonoText>
-          </View>
-        </View>
       </View>
     );
   }
-
-  _maybeRenderDevelopmentModeWarning() {
-    if (__DEV__) {
-      const learnMoreButton = (
-        <Text onPress={this._handleLearnMorePress} style={styles.helpLinkText}>
-          Learn more
-        </Text>
-      );
-
-      return (
-        <Text style={styles.developmentModeText}>
-          Development mode is enabled, your app will be slower but you can use useful development
-          tools. {learnMoreButton}
-        </Text>
-      );
-    } else {
-      return (
-        <Text style={styles.developmentModeText}>
-          You are not in development mode, your app will run at full speed.
-        </Text>
-      );
-    }
-  }
-
-  _handleLearnMorePress = () => {
-    WebBrowser.openBrowserAsync('https://docs.expo.io/versions/latest/guides/development-mode');
-  };
-
-  _handleHelpPress = () => {
-    WebBrowser.openBrowserAsync(
-      'https://docs.expo.io/versions/latest/guides/up-and-running.html#can-t-see-your-changes'
-    );
-  };
+  
 }
 
 const styles = StyleSheet.create({
+  bigTitle: {
+    color: '#000066',
+    fontWeight: 'bold',
+    fontSize: 25
+  },
+  smallTitle: {
+    color: '#000066',
+    fontSize: 20
+  },
   container: {
-    flex: 1,
+    flex: 1,  
     backgroundColor: '#fff',
+    marginTop: 50
+  },
+  containerCenter: {
+    alignContent: 'center',
+    alignItems: 'center'
+  },
+  containerColumn: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: '#fff'
+  },
+  containerRow: {
+    flex: 1,
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+  },
+  searchtext: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    fontSize: 12,
+    alignItems: 'stretch',
+    marginLeft: 20,
+    marginRight: 20,
+    marginTop: 5,
   },
   developmentModeText: {
     marginBottom: 20,
@@ -112,6 +166,8 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     paddingTop: 30,
+    justifyContent: 'center', 
+    alignItems: 'stretch'
   },
   welcomeContainer: {
     alignItems: 'center',
@@ -139,12 +195,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.05)',
     borderRadius: 3,
     paddingHorizontal: 4,
-  },
-  getStartedText: {
-    fontSize: 17,
-    color: 'rgba(96,100,109, 1)',
-    lineHeight: 24,
-    textAlign: 'center',
   },
   tabBarInfoContainer: {
     position: 'absolute',
@@ -185,4 +235,20 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#2e78b7',
   },
+  input: {
+    flex: 1,
+    marginLeft: 0,
+    marginRight: 0,
+    marginTop: 0,
+    height: 40,
+    borderColor: '#000000',
+    fontSize: 18,
+    borderWidth: 1,
+    paddingLeft: 10,
+    paddingRight: 10
+  },
+  searchBttn: {
+    alignItems: 'center',
+    margin: 10
+  }
 });
